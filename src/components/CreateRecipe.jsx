@@ -6,16 +6,12 @@ import "./CreateRecipe.css";
 
 // Helper function to simulate image upload (replace with actual storage logic)
 const uploadImageAndGetUrl = async (imageFile) => {
-    // *** In a real application, this is where you'd upload the image to Firebase Storage or AWS S3 ***
-    
-    // For now, we simulate success and return a generic placeholder URL
-    if (imageFile) {
-        await new Promise(resolve => setTimeout(resolve, 500)); // Simulate network delay
-        // In reality: return storageRef.getDownloadURL();
-        return "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=500&auto=format&fit=crop"; // Placeholder URL
-    }
-    return null;
+    if (!imageFile) return null;
+
+    // Generate a unique URL for each selected image
+    return URL.createObjectURL(imageFile);
 };
+
 
 export default function CreateRecipe() {
     const [title, setTitle] = useState("");
